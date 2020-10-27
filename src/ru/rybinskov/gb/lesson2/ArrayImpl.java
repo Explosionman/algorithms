@@ -167,6 +167,15 @@ public class ArrayImpl<E extends Comparable<? super E>> implements Array<E> {
         }
     }
 
+    @Override
+    public Array<E> clone() {
+        Array<E> newArray = new ArrayImpl<E>(size);
+        for (int i = 0; i < size; i++) {
+            newArray.add(data[i]);
+        }
+        return newArray;
+    }
+
     private void checkIndex(int index) {
         if (index < 0 || index >= size) {
             throw new MyCustomArrayIndexOutOfBoundsException(index, size);
