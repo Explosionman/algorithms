@@ -9,6 +9,8 @@ public class TestArray {
     private static void testDynamicArray() {
         Array<Integer> data = new ArrayImpl<>(4);
 //        Array<Integer> data = new SortedArrayImpl<>(4);
+        System.out.println("Data size: " + data.size());
+        data.display();
         data.add(5);
         data.add(4);
         data.add(3);

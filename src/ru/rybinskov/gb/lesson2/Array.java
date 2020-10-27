@@ -9,6 +9,7 @@ public interface Array<E> {
     E get(int index);
 
     boolean remove(E value);
+
     E remove(int index);
 
     int indexOf(E value);
@@ -28,7 +29,8 @@ public interface Array<E> {
     void trimToSize();
 
     void sortBubble();
-    void sortSelect();
-    void sortInsert();
 
+    void sortSelect();
+
+    void sortInsert();
 }
