@@ -1,5 +1,7 @@
 package ru.rybinskov.gb.lesson3.MyQueue;
 
+import ru.rybinskov.gb.lesson3.MyQueue.interfaces.Queue;
+
 public class QueueImpl<E> implements Queue<E> {
 
     private static final int DEFAULT_TAIL = -1;
