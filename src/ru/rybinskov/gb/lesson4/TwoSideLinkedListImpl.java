@@ -1,5 +1,6 @@
 package ru.rybinskov.gb.lesson4;
 
+
 public class TwoSideLinkedListImpl<E> extends SimpleLinkedListImpl<E> implements TwoSideLinkedList<E> {
 
     private Node<E> lastElement;
@@ -26,7 +27,7 @@ public class TwoSideLinkedListImpl<E> extends SimpleLinkedListImpl<E> implements
         Node<E> current = firstElement;
         Node<E> previous = null;
         while (current != null) {
-            if (current.item.equals(value)) {
+            if (((Node<E>) current).item.equals(value)) {
                 break;
             }
             previous = current;
