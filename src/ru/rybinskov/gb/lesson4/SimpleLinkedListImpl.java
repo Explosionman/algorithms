@@ -1,9 +1,14 @@
 package ru.rybinskov.gb.lesson4;
 
+import ru.rybinskov.gb.lesson4.LinkedIterator;
+import ru.rybinskov.gb.lesson4.LinkedList;
+
+import java.util.Iterator;
+
 public class SimpleLinkedListImpl<E> implements LinkedList<E> {
 
     protected int size;
-    protected Node<E> firstElement; //001[005]
+    protected LinkedList.Node<E> firstElement; //001[005]
 
     @Override
     public void insertFirst(E value) {
@@ -96,5 +101,11 @@ public class SimpleLinkedListImpl<E> implements LinkedList<E> {
     @Override
     public E getFirst() {
         return firstElement.item;
+    }
+
+
+    @Override
+    public Iterator<E> iterator() {
+        return new LinkedIterator<>(this);
     }
 }
