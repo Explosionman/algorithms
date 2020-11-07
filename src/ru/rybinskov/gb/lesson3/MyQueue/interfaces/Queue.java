@@ -1,4 +1,4 @@
-package ru.rybinskov.gb.lesson3.MyQueue;
+package ru.rybinskov.gb.lesson3.MyQueue.interfaces;
 
 public interface Queue<E> {
 

@@ -1,14 +1,15 @@
 package ru.rybinskov.gb.lesson3;
 
-import ru.rybinskov.gb.lesson3.MyQueue.PriorityQueueImpl;
-import ru.rybinskov.gb.lesson3.MyQueue.Queue;
+import ru.rybinskov.gb.lesson3.MyQueue.DequeueImpl;
+import ru.rybinskov.gb.lesson3.MyQueue.interfaces.Dequeue;
+import ru.rybinskov.gb.lesson3.MyQueue.interfaces.Queue;
 import ru.rybinskov.gb.lesson3.MyQueue.QueueImpl;
 import ru.rybinskov.gb.lesson3.MyStack.Stack;
 import ru.rybinskov.gb.lesson3.MyStack.StackImpl;
 
 public class Test {
     public static void main(String[] args) {
-        testStack();
+//        testStack();
         testQueue();
     }
 
@@ -43,21 +44,25 @@ public class Test {
     }
 
     private static void testQueue() {
-        Queue<Integer> queue = new QueueImpl<>(5);
+//        Queue<Integer> queue = new QueueImpl<>(5);
 //        Queue<Integer> queue = new PriorityQueueImpl<>(5);
-        System.out.println(queue.insert(3));
-        System.out.println(queue.insert(5));
-        System.out.println(queue.insert(1));
-        System.out.println(queue.insert(2));
-        System.out.println(queue.insert(6));
-        System.out.println(queue.insert(4));
-
-        System.out.println("Queue peek: " + queue.peekHead());
+        Dequeue<Integer> queue = new DequeueImpl<>(6);
+        System.out.println("Add value 3: " + queue.insert(3));
+        System.out.println("Add value 5: " + queue.insert(5));
+        System.out.println("Add value 1: " + queue.insert(1));
+        System.out.println("Add value 2: " + queue.insertRight(2));
+        System.out.println("Add value 6: " + queue.insertRight(6));
+        System.out.println("Add value 4: " + queue.insertRight(4));
+        System.out.println("Add value 9: " + queue.insertRight(9));
+        System.out.println("____________________________________________");
+        System.out.println("Queue peek left: " + queue.peekHead());
+        System.out.println("Queue peek right: " + queue.peekRightHead());
         System.out.println("Queue size: " + queue.size());
         System.out.println("Queue is full: " + queue.isFull());
+        System.out.println("____________________________________________");
 
         while (!queue.isEmpty()) {
-            System.out.println(queue.remove());
+            System.out.println(queue.removeRight());
         }
     }
 }
