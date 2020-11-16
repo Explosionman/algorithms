@@ -53,4 +53,15 @@ public class Node<T extends Comparable<? super T>> {
     public boolean hasOnlyOneChild() {
         return leftChild == null ^ rightChild == null;
     }
+
+    public boolean isBalanced(Node node) {
+        return (node == null) ||
+                isBalanced(node.getLeftChild()) &&
+                        isBalanced(node.getRightChild()) &&
+                        Math.abs(height(node.getLeftChild()) - height(node.getRightChild())) <= 1;
+    }
+
+    private int height(Node node) {
+        return node == null ? 0 : 1 + Math.max(height(node.getLeftChild()), height(node.getRightChild()));
+    }
 }
