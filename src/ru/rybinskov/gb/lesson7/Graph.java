@@ -1,5 +1,7 @@
 package ru.rybinskov.gb.lesson7;
 
+import ru.rybinskov.gb.lesson2.Array;
+
 import java.util.*;
 
 public class Graph {
@@ -38,7 +40,7 @@ public class Graph {
     private int indexOf(String vertexLabel) {
         for (int i = 0; i < vertexList.size(); i++) {
             if (vertexLabel.equals(vertexList.get(i).getLabel())) {
-                return  i;
+                return i;
             }
         }
         return -1;
@@ -81,8 +83,7 @@ public class Graph {
             vertex = getNearUnvisitedVertex(stack.peek());
             if (vertex != null) {
                 visitVertex(vertex, stack);
-            }
-            else {
+            } else {
                 stack.pop();
             }
         }
@@ -110,8 +111,7 @@ public class Graph {
             vertex = getNearUnvisitedVertex(queue.peek());
             if (vertex != null) {
                 visitVertex(vertex, queue);
-            }
-            else {
+            } else {
                 queue.remove();
             }
         }
@@ -140,9 +140,49 @@ public class Graph {
         stack.push(vertex);
         vertex.setVisited(true);
     }
+
     private void visitVertex(Vertex vertex, Queue<Vertex> queue) {
-        System.out.println(vertex);
         queue.add(vertex);
         vertex.setVisited(true);
+    }
+
+    public ArrayDeque<String> checkPossibleRoutes(String startPosition, String endPosition) {
+        int start = indexOf(startPosition);
+        int end = indexOf(endPosition);
+        if (start == -1 || end == -1) {
+            throw new IllegalArgumentException("Введены некорректные данные по поиску маршрута");
+        }
+
+        Queue<Vertex> queue = new ArrayDeque<>();
+
+        Vertex vertex = vertexList.get(start);
+        visitVertex(vertex, queue);
+
+        while (!queue.isEmpty()) {
+            vertex = getNearUnvisitedVertex(queue.peek());
+            if (vertex == null) {
+                queue.remove();
+            } else {
+                visitVertex(vertex, queue);
+                vertex.setPreviousVertex(queue.peek());
+                if (vertex.getLabel().equals(endPosition)) {
+                    return buildPath(vertex);
+                }
+            }
+        }
+
+        resetVertexState();
+        return null;
+    }
+
+    private ArrayDeque<String> buildPath(Vertex vertex) {
+        ArrayDeque<String> queue = new ArrayDeque<>();
+        Vertex current = vertex;
+        while (current != null) {
+            queue.add(current.getLabel());
+            current = current.getPreviousVertex();
+        }
+
+        return queue;
     }
 }
